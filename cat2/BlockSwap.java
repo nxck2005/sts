@@ -36,5 +36,6 @@ public class BlockSwap {
             System.out.print(num + " ");
         }
         System.out.println();
+        sc.close();
     }
 }
