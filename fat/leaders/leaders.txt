@@ -1,0 +1,25 @@
+The Concept: A "Leader" is an element that is strictly greater than all elements to its right side. The right-most element is always a leader because there is nothing to its right.
+
+The Intuition (Right-to-Left Scan): Instead of checking every element against every other element to its right (which is slow/nested loops), simply scan the array backwards. Why? As you walk backwards, you can keep track of the "maximum value seen so far". If the current element is bigger than that maximum, it must be a leader.
+
+The Algorithm (Optimal):
+
+    Start from the last element (index n-1).
+
+    Treat the last element as the initial "maximum". It is always a leader.
+
+    Move left (n-2 down to 0).
+
+    For each element:
+
+        If it is greater than the current "maximum":
+
+            It is a leader.
+
+            Update "maximum" to this new value.
+
+Complexity: Time: O(N) (One pass) Space: O(1) (excluding the space needed to store the output list)
+
+Java Logic: ArrayList<Integer> leaders = new ArrayList<>(); int max = arr[n - 1]; leaders.add(max); // Last element is always a leader
+
+// Scan backwards for (int i = n - 2; i >= 0; i--) { if (arr[i] > max) { leaders.add(arr[i]); max = arr[i]; // Update the champion } } // Note: This collects leaders in reverse order (right-to-left). // If the output needs to be left-to-right, just reverse the list at the end.
