@@ -1,0 +1,17 @@
+ARRAY ROTATION (BLOCK SWAP / REVERSAL ALGO)
+
+The Core Intuition: To rotate an array to the left by k spots, you are essentially swapping two blocks. Original: [ A ] [ B ] Goal: [ B ] [ A ]
+
+The Math (The "Shoes and Socks" Rule): The logic relies on the property: (AB)^R = B^R A^R. If you reverse the individual parts first, and then reverse the whole thing, you effectively swap the blocks.
+
+The 3 Steps to Remember:
+
+    Reverse Part A (indices 0 to k-1)
+
+    Reverse Part B (indices k to n-1)
+
+    Reverse Whole (indices 0 to n-1)
+
+Complexity: Time: O(N) Space: O(1) (In-place)
+
+Java Logic: k = k % n; // 1. Safety check! reverse(arr, 0, k - 1); // 2. Reverse first part reverse(arr, k, n - 1); // 3. Reverse second part reverse(arr, 0, n - 1); // 4. Reverse whole array
