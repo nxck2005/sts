@@ -1,0 +1,30 @@
+thanks gemini for annotating <3
+
+# Revision: Josephus Problem (Survivor in a Circle)
+
+### The Problem
+There are `N` people in a circle. In every step, we skip `k-1` people and kill the `k`-th person. This continues until only one person survives.
+**Goal:** Find the position (1-based index) of the survivor.
+
+---
+
+### 1. Iterative Solution (Best for Exam)
+This is the safest approach. It works for **ANY K**, uses **O(1) Space**, and avoids recursion depth errors.
+
+**Logic:**
+* Start with a circle of size 1 (Survivor is at index 0).
+* Grow the circle size (`i`) from 2 up to `N`.
+* In each step, the survivor's position shifts by `k` relative to the new start.
+
+```java
+public static int josephusIterative(int n, int k) {
+    int i = 1; 
+    int sword = 0; // Base case: In a circle of size 1, survivor is at index 0
+    
+    // Grow from size 2 to N
+    while (i <= n) {
+        sword = (sword + k) % i; // Shift by k and wrap around
+        i++;
+    }
+    
+    return sword + 1; // Convert 0-based index to 1-based index
